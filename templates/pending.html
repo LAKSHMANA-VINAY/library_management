@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', path='/pending.css') }}">
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <label class="logo">Library Management System</label>
+        <ul>
+            <li><a href="{{ url_for('home') }}">HOME</a></li>
+            <li><a href="{{ url_for('book') }}">BOOK</a></li>
+            <li><a class="active" href="{{ url_for('pending') }}">PENDING DETAILS</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <table> 
+            <caption>Pending Details</caption>
+            <thead> 
+                <tr> 
+                    <th>Register Number</th> 
+                    <th>Phone</th>
+                    <th>Book</th> 
+                    <th>Date</th>
+                    <th>Status</th>            
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in data %}
+                <tr>
+                    <td>{{ entry['regno'].strip() }}</td>
+                    <td>{{ entry['phone'].strip() }}</td>
+                    <td>{{ entry['book'].strip() }}</td>
+                    <td>{{ entry['date'].strip() }}</td>
+                    <td>{{ entry['status'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

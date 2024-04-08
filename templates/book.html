@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{url_for('static',path='/book.css')}}">
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <label class="logo">Library Management System</label>
+        <ul>
+            <li><a href="{{url_for('home')}}">HOME</a></li>
+            <li><a class="active" href="{{url_for('book')}}">BOOK</a></li>
+            <li><a href="{{url_for('pending')}}">PENDING DETAILS</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="message">
+        </div>
+        <h2>ENTER STUDENT BOOKING DETAILS</h2>
+        <form action="book/details" method="POST" autocomplete="off">
+
+            <input type="text" id="regno" name="regno" placeholder="Student Register Number" required>
+            <input type="text" id="phone" name="phone" placeholder="Student Phone Number" required>
+            <input type="text" id="book" name="book" placeholder="Book Name/Book ID" required>
+            <input type="text" id="date" name="date" placeholder="Date" required readonly>
+            <select name="status">
+                <option value="False">Take Away</option>
+            </select>
+            <input type="submit" value="BOOK">
+        </form>
+        <script>
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+        
+            today = yyyy + '-' + mm + '-' + dd;
+                    document.getElementById("date").value = today;
+        </script>        
+</body>
+</html>
